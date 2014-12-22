@@ -1,0 +1,15 @@
+extends layout
+block body
+	div#header
+		img(src='/assets/img/rant.png',alt='Rant')
+		div#navbar
+			ul
+				li
+					a(href='/') Home
+				li
+					a(href='/documentation.html') Documentation
+				li
+					a(href='https://github.com/TheBerkin/Rant') GitHub
+				li
+					a(href='http://berkin.me/rantbox') Rantbox
+	div!= content

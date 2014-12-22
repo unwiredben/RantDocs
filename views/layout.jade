@@ -1,0 +1,12 @@
+doctype html
+html
+	head
+		title= (title ? title + ' | ' : '') + 'Rant'
+		script(src='/assets/lib.min.js')
+		script(src='/assets/common.min.js')
+		link(href='http://fonts.googleapis.com/css?family=PT+Sans:700|Open+Sans:400italic,700italic,400,700',rel='stylesheet')
+		link(href='/assets/lib.min.css',rel='stylesheet')
+		link(href='/assets/common.min.css',rel='stylesheet')
+	body
+		div.container
+			block body

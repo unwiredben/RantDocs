@@ -1,0 +1,10 @@
+{
+  "name": "rant-website",
+  "private": true,
+  "version": "1.0.0",
+  "dependencies": {
+    "bootstrap": "~3.3.1",
+    "prism": "git@github.com:LeaVerou/prism.git#gh-pages",
+    "font-awesome": "~4.2.0"
+  }
+}
