@@ -98,7 +98,7 @@ This page contains a list of all the functions currently implemented in Rant. Th
 
 ## after
 ---
-The `after` function specifies a patter that will be evaluated after each repetition of the previous block. This function is best used with [rep](#rep).
+The `after` function specifies a patter that will be evaluated after each repetition of the following block. This function is best used with [rep](#rep).
 
 ### Syntax
 ````rant
@@ -137,7 +137,7 @@ This pattern has a 90% chance of displaying `Hello, world!`, and a 10% chance of
 
 ## any
 ---
-The `any` function is the opposite of [alt](#alt). It provides alternate output if the primary pattern provided **does** have output.
+The `any` function is the opposite of [alt](#alt). It executes a secondary pattern if the primary pattern provided **does** provide output. As such, the function will either print both outputs sequentially, or nothing at all.
 
 ### Syntax
 ```rant
@@ -148,11 +148,15 @@ The `any` function is the opposite of [alt](#alt). It provides alternate output 
 * __secondary__ - The pattern that will be run if the primary pattern outputs anything.
 
 ### Usage
-The following example shows `alt` being used in conjunction with the [chance](#chance) function. It is the opposite of the example for [alt](#alt).
+The following example shows `any` being used to check the output from two blocks. If they collectively print anything, the second pattern will also run.
 ```rant
-[any: [chance:90]{Hello, world!}; Goodbye, world!]
+[any: {X,\s|}{Y,\s|}; Z]
 ```
-This pattern has a 90% chance of displaying `Goodbye, world!`, and a 10% chance of displaying `Hello, world!`
+All possible outputs are:
+* Nothing. Nothing at all.
+* `X, Z`
+* `Y, Z`
+* `X, Y, Z`
 
 ## arg
 ---
@@ -180,7 +184,7 @@ Hello, Berkin!
 
 ## before
 ---
-The `before` function specifies a pattern that will be evaluated before each repetition of the previous block. It is the opposite of [after](#after). This function is best used with [rep](#rep).
+The `before` function specifies a pattern that will be evaluated before each repetition of the following block. It is the opposite of [after](#after). This function is best used with [rep](#rep).
 
 ### Syntax
 ````rant
