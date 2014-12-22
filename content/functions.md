@@ -260,6 +260,7 @@ This function is equivalent to calling [case](#case) with one of the above param
 ### Syntax
 ```rant
 [capsinfer: input-text]
+```
 #### Parameters
 * __input-text__ - The input text to infer the capitalization from.
 
