@@ -3,7 +3,7 @@ title: Queries
 ----
 
 ## Queries
-Queries are used for fetching items from dictionaries. The most basic form of a query includes the name of the dictionary specified in the dictionary header:
+Queries are used for fetching items from dictionaries. The most basic form of a query includes the name of the dictionary table specified in the table header:
 ```rant
 <noun> <adj> <verb> <activity>
 ```
@@ -33,7 +33,7 @@ Filters can be prefixed with an exclaimation point to make them blacklist filter
 >
 ```
 
-Placing a dollar sign after the dictionary name and subtype will make the query an exclusive query. This means that the query will return entries that _only_ have those classes. For example, the following query will return places that only have the `indoor` class:
+Placing a dollar sign after the table name and subtype will make the query an exclusive query. This means that the query will return entries that _only_ have those classes. For example, the following query will return places that only have the `indoor` class:
 ```rant
 <place$-indoor>
 ```

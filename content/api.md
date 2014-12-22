@@ -12,9 +12,9 @@ To use the Rant interpreter, you'll need to create a `RantEngine` object. The `R
 ```csharp
 // New RantEngine without a vocabulary.
 var rant = new RantEngine();
-// New RantEngine with dictionary files from a specified directory.
+// New RantEngine with a dictionary from a specified directory.
 var rant = new RantEngine("directory");
-// New RantEngine with dictionary files from a specified directory, and a specified NsfwFilter setting.
+// New RantEngine with a dictionary from a specified directory, and a specified NsfwFilter setting.
 var rant = new RantEngine("directory", NsfwFilter.Disallow);
 ```
 

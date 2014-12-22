@@ -4,36 +4,36 @@ title: Dictionaries
 
 ## Dictionaries
 
-Rant loads dictionaries from .dic files in a specified folder. Dictionary files use a plaintext format designed to be concise and readable.
+Rant loads tables from .dic files in a specified folder. Table files use a plaintext format designed to be concise and readable.
 
 ## Format
-A dictionary is made up of a header and an entry list. The header is simply a few directives that tell Rant about the format version, what to name the dictionary, and how many subtypes to load for each entry. The entry list contains the contents of the dictionary.
+A table is made up of a header and an entry list. The header is simply a few directives that tell Rant about the format version, what to name the table, and how many subtypes to load for each entry. The entry list contains the contents of the table.
 
 Althrough this article uses separate lines for all directives, entries, and properties, line breaks are optional. They are used here for the sake of clarity (but the standard dictionary uses them too).
 
 ### Comments
-You can insert comments anywhere in a dictionary file by adding a `@` symbol and your comment after it.
+You can insert comments anywhere in a table by adding a `@` symbol and your comment after it.
 
 ## Header
-The header must appear at the very top of the file. A header for a noun dictionary might look like:
+The header must appear at the very top of the file. A header for a noun table might look like:
 ```
 #version 2
 #name noun
 #subs singular plural
 ```
 These directives are:
-* `version` - The dictionary format to use. This file uses version 2 of the Rant dictionary format (the one documented here).
-* `name` - The dictionary will be named whatever you specify. This is how it will be used in Rant; this dictionary will be used as `<noun>`
-* `subs` - This specifies the subtypes that this dictionary defines. Each entry must include all subtypes specified, in the order that they are listed.
+* `version` - The table format to use. This file uses version 2 of the Rant table format (the one documented here).
+* `name` - The table will be named whatever you specify. This is how it will be used in Rant; this table will be used as `<noun>`
+* `subs` - This specifies the subtypes that this table defines. Each entry must include all subtypes specified, in the order that they are listed.
 
-Every dictionary requires a name. It is optional to include a version and subtype list. If omitted, Rant will default to version 2, and create one subtype named `default`.
+Every table requires a name. It is optional to include a version and subtype list. If omitted, Rant will default to version 2, and create one subtype named `default`.
 
 ## Entries
-The entry list describes all the entries in the dictionary, along with their properties. Entries begin with a right angle bracket (`>`), followed by the terms for each defined subtype, separated with forward slashes (`/`). A simple entry for a noun might look like this:
+The entry list describes all the entries in the table, along with their properties. Entries begin with a right angle bracket (`>`), followed by the terms for each defined subtype, separated with forward slashes (`/`). A simple entry for a noun might look like this:
 ```
 > gorilla/gorillas
 ```
-Most of the time, however, dictionary entries will require classes, pronunciation data, or other information to make it more useful to the engine. These are added through properties. Properties begin with a pipe (`|`) followed by the property name and then whatever information is required. Below is a list of available properties you can apply to entries:
+Most of the time, however, table entries will require classes, pronunciation data, or other information to make it more useful to the engine. These are added through properties. Properties begin with a pipe (`|`) followed by the property name and then whatever information is required. Below is a list of available properties you can apply to entries:
 
 ### Properties
 * `class classname1 ...` - Assigns the entry to the specified classes. Classes must be alphanumeric, and separated by spaces.
