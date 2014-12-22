@@ -2,11 +2,12 @@
 title: Documentation
 ----
 
-## Documentation
+# Documentation
 
-Welcome to the documentation for Rant! Here you'll find information on how all the different parts of Rant work. If you're just starting out, check out the [tutorial](/tutorial.html).
+Welcome to the documentation for Rant! Here you'll find information on how all the different parts of Rant work.
 
 ## Table of Contents
+---
 * [Introduction](#introduction)
 * [Tags](#tags)
 * [Blocks](#blocks)
