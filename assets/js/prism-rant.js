@@ -52,7 +52,7 @@ Prism.languages.rant = {
 		pattern: new RegExp("([:;]\\s*)(" + rantModes + ")\\s*(?=[;\\]])", "i"),
 		alias: 'keyword',
 		lookbehind: true
-	}
+	},
 	'list': {
 		pattern: /((?:^|[^\\])\[)(%[:=!]?\w+)(\s*(?:\+\^?\%?|\=\@?|![@^$]?|\$\^?|\@[?^$]?))?/,
 		alias: 'entity',
