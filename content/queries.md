@@ -25,7 +25,7 @@ Multiple class filters can be combined. For example, if you wanted to find long 
 <noun-weapon-long>
 ```
 
-Filters can be prefixed with an exclaimation point to make them blacklist filters. This means that the filter will return an entry that _doesn't_ include that class. For example, the following filter will return all places that aren't buildings, but still have the "indoor" class:
+Filters can be prefixed with an exclamation point to make them blacklist filters. This means that the filter will return an entry that _doesn't_ include that class. For example, the following filter will return all places that aren't buildings, but still have the "indoor" class:
 ```rant
 <place
 	-!building
@@ -82,7 +82,7 @@ An empty query with only a carrier deletes it and allows it to be assigned again
 ```
 
 #### Match Carriers
-Match carriers are used for keepin the same result over multiple queries. Say, for example, you had a story where a randomly generated name performed actions. Take the following query:
+Match carriers are used for keeping the same result over multiple queries. Say, for example, you had a story where a randomly generated name performed actions. Take the following query:
 ```rant
 After <name-male> <verb.ed> [num: 2; 10] <noun.plural>, <name-male> said \"<name-male>, you are a <adj> dude.\"
 ```

@@ -715,7 +715,7 @@ The `is` function can be used in the body of a comparison (created with [cmp](#c
 [is: results; @body]
 ```
 #### Parameters
-* __results__ - A list of comparison results to check against, seperated by spaces. The following results are valid to check against:
+* __results__ - A list of comparison results to check against, separated by spaces. The following results are valid to check against:
     * `different` or `not-equal` - The values do not match.
     * `equal` - The values match.
     * `less` - Values are numeric and the first value is less than the second.

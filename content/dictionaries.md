@@ -9,7 +9,7 @@ Rant loads tables from .dic files in a specified folder. Table files use a plain
 ## Format
 A table is made up of a header and an entry list. The header is simply a few directives that tell Rant about the format version, what to name the table, and how many subtypes to load for each entry. The entry list contains the contents of the table.
 
-Althrough this article uses separate lines for all directives, entries, and properties, line breaks are optional. They are used here for the sake of clarity (but the standard dictionary uses them too).
+Although this article uses separate lines for all directives, entries, and properties, line breaks are optional. They are used here for the sake of clarity (but the standard dictionary uses them too).
 
 ### Comments
 You can insert comments anywhere in a table by adding a `@` symbol and your comment after it.
@@ -89,4 +89,4 @@ Here is an example of a `class` directive being used to apply classes to animals
 Rant expects pronunciation strings to follow a few rules:
 * Hyphens (`-`) denote syllable boundaries.
 * Pronunciation strings should not include any special characters (`#`, `>` or `/`).
-* Each syllable should use the [SAMPA](https://en.wikipedia.org/wiki/Speech_Assessment_Methods_Phonetic_Alphabet) pronunciation alphabet. It's basically a machine-readable, human-writeable pronunciation format. You can specify your pronunciations in other formats, but when everyone else is using SAMPA, it won't rhyme with anyone else's.
+* Each syllable should use the [SAMPA](https://en.wikipedia.org/wiki/Speech_Assessment_Methods_Phonetic_Alphabet) pronunciation alphabet. It's basically a machine-readable, human-writable pronunciation format. You can specify your pronunciations in other formats, but when everyone else is using SAMPA, it won't rhyme with anyone else's.
