@@ -1102,7 +1102,7 @@ The `rep` (alias `r`) function creates a repeater which runs the following block
 [rep: repetitions]
 ```
 #### Parameters
-* __repetitions__ - The number of repetitions.
+* __repetitions__ - The number of repetitions. Specify `each` to repeat for each item in the next block.
 
 ### Usage
 The following example prints evil laughter:
