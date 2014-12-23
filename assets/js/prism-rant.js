@@ -48,7 +48,7 @@ Prism.languages.rant = {
 	},
 	'subroutine': {
 		pattern: /(\[)(\$\??)(\[.*?\])(?=\s*\:)/g,
-		alias: 'important'
+		alias: 'important',
 		lookbehind: true,
 	},
 	'modename': {
