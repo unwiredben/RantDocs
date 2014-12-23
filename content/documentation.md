@@ -19,7 +19,7 @@ Welcome to the documentation for Rant! Here you'll find information on how all t
 ---
 Firstly, a Rant program is known as a *pattern*. Patterns can contain any of the elements in this documentation, and plain text. In fact, plain text is a valid Rant pattern, similar to how plain text is valid regex. But, as with regex, the real magic comes from the language itself. 
 
-A Rant *table* is a collection of entries for a specific category of words. For example, a noun table contains nouns; a places table contains places. A Rant *dictionary* is a collection of dictionaries. Rant has a default dictionary ([found here](https://github.com/theberkin/rantvocab)), but you may create and specify your own if you'd like. You can write your own tables, following the format documented [here](/dictionaries.html).
+A Rant *table* is a collection of entries for a specific category of words. For example, a noun table contains nouns; a places table contains places. A Rant *dictionary* is a collection of tables. Rant has a default dictionary ([found here](https://github.com/theberkin/rantvocab)), but you may create and specify your own if you'd like. You can write your own tables, following the format documented [here](/dictionaries.html).
 
 There are four core Rant elements: tags, blocks, queries, and arithmetic expressions. There are additional types of these elements - read on to find out what they are.
 
