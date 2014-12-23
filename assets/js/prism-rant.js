@@ -35,7 +35,8 @@ Prism.languages.rant = {
 		pattern: /<[\s\S]+?>/g,
 		alias: 'tag',
 		inside: {
-			'regex': /\/\/(.*?[^\\])?\/\/i?/ig
+			'regex': /\/\/(.*?[^\\])?\/\/i?/ig,
+			'query important': /(!?-|\?!?|\$|::|[=!&@])/
 		}
 	},
 	'regex': {
@@ -45,8 +46,15 @@ Prism.languages.rant = {
 		}
 	},
 	'function': {
-		pattern: new RegExp("((?:^|[^\\\\])\\[)([$]\\w+|" + rantFunctions + ")(?:[:\\]])", "i"),
+		pattern: new RegExp("((?:^|[^\\\\])\\[)([$]\\w+|" + rantFunctions + ")(?=[:\\]])", "i"),
 		lookbehind: true
+	},
+	'subroutine': {
+		pattern: /(^|[^\\])(\[)(\$\??)(\[.*?\])(?=\s*\:)/g,
+		lookbehind: true,
+		inside: {
+			'important': /(\[.*?\])(?=\s*\:)/
+		}
 	},
 	'modename': {
 		pattern: new RegExp("([:;]\\s*)(" + rantModes + ")\\s*(?=[;\\]])", "i"),
