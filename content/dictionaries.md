@@ -90,3 +90,4 @@ Rant expects pronunciation strings to follow a few rules:
 * Hyphens (`-`) denote syllable boundaries.
 * Pronunciation strings should not include any special characters (`#`, `>` or `/`).
 * Each syllable should use the [SAMPA](https://en.wikipedia.org/wiki/Speech_Assessment_Methods_Phonetic_Alphabet) pronunciation alphabet. It's basically a machine-readable, human-writable pronunciation format. You can specify your pronunciations in other formats, but when everyone else is using SAMPA, it won't rhyme with anyone else's.
+  * You can't write the `@` SAMPA character in Rant dictionaries, since it's the comment character. Rant dictionaries use the caret (`^`) character, since it is unused in SAMPA and in Rant.
