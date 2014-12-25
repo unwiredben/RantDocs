@@ -103,6 +103,8 @@ Rant includes basic arithmetic support. Equations are enclosed in single backtic
 * __Statements__ - Statements do not print to the output when run. These are useful for defining variables. A statement is enclosed in single backticks and ends with a semicolon (ex. `` `a = 42;` ``)
 * __Expressions__ - Expressions print directly to the output when run. Statements are enclosed in single backticks but should not end with a semicolon (e. `` `2 + 2` ``)
 
+More details about arithmetic support in Rant can be found on the [Arithmetic](/arithmetic.html) page.
+
 ## API
 ---
 Integrating Rant into your .NET application is pretty simple. To see the full documentation, check out the [API](/api.html) page.
