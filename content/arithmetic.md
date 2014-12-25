@@ -5,6 +5,7 @@ title: Arithmetic
 ## Arithmetic
 
 Though Rant's arithmetic support is basic, it's comprehensive enough to do whatever you'll need to perform in your text generation adventures. Rant supports the following operators:
+
 |Operator|Function    |
 |----|----------------|
 | +  | Addition       |
@@ -28,6 +29,7 @@ Rant supports variables within its arithmetic blocks. Variables persist between 
 `a`
 ```
 Rant supports several operators for performing operations in-place on variables:
+
 |Operator|Function|
 |--------|--------|
 | ++     | Increments variable. |
