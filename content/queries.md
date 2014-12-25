@@ -55,6 +55,30 @@ Regex filters can also become blacklist filters:
 >
 ```
 
+#### Syllable Count Filtering
+A range syntax is allowed in queries for finding entries that include a specific number of syllables. This is useful for rhyming purposes. A range can be specified with the following syntax:
+```rant
+<query(a - b)>
+```
+Both `a` and `b` are optional, but you must use at least one. Different behavior comes from using different ranges. 
+
+Using both returns an entry that has a syllable count between that range:
+```rant
+<noun(2-3)> # -> "umbrella"
+```
+Using only `a` means that you'll get an entry that has a syllable count greater than or equal to the specified number:
+```rant
+<noun(2-)> # -> "penny"
+```
+Using only `b` means that you'll get an entry that has a syllable count less than or equal to the specified number:
+```rant
+<noun(-3)> # -> "mandible"
+```
+Using only `a` without a hyphen means that you'll get an entry that has exactly that number of syllables:
+```rant
+<noun(4)> # -> "celebrity"
+```
+
 ### Subtypes
 ---
 Subtypes can be specified in a query to only return entries that are specified with that subtype. For example, to return a verb ending in -ing, you could use the following query:
@@ -186,4 +210,77 @@ To the extreme I rock a mic like a <noun-job::&vandal>
 Light up a stage and wax a chump like a <noun::&vandal>.
 ```
 
-Right now, most words in the default Rant vocabulary do not have pronunciation data. That means that the previous example, right now, won't work.
+#### Disassociative Carriers
+Like how the associative carrier shares classes between queries, the disassociative carrier finds entries that share *no* classes with the carrier. The syntax combines blacklist filters and associative carriers:
+```rant
+<query::@!name>
+```
+For example, take the following sentence:
+```rant
+<name> had \a <noun> and \a <noun>.
+```
+If your goal is humor, having both nouns come up as weapons, or instruments, or any two of one thing won't be that funny. It would be funnier if you could make sure that both queries came up with different types of nouns. Enter the disassociative carrier:
+```rant
+<name> had \a <noun::@!A> and \a <noun::@!A>.
+```
+This will produce results like the following:
+```rant
+Harry had a flute and a gallbladder.
+```
+
+#### Match-Disassociative Carrier
+Keeping with the trend, the match-disassociative carrier makes sure that a query result doesn't share any classes with the match store in a match carrier. The syntax is as you would expect:
+```rant
+<query::@!=name>
+```
+You could write the previous example as:
+```rant
+<name> had \a <noun::=A> and \a <noun::@!=A>.
+```
+
+#### Divergent Carriers
+The divergent carrier does the same thing as the disassociative carrier, only that it makes sure that the result has *at least one* different class than the carrier. Both results could be a weapon, for example, but one might have a "long" class and one might not. The syntax is:
+```rant
+<query::@+name>
+```
+Going with the previous example again:
+```rant
+<name> had \a <noun::@+A> and \a <noun::@+A>.
+```
+This would produce something like:
+```rant
+Forbes had a monster and a demon.
+```
+
+#### Match-Divergent Carriers
+The match-divergent carrier is a divergent carrier that uses the class data stored in a match carrier. The syntax is similar to a divergent carrier:
+```rant
+<query::@+=name>
+```
+The previous example could also be written as:
+```rant
+<name> had \a <noun::=A> and \a <noun::@+=A>.
+```
+
+#### Relational Carrier
+The relational carrier is to the associative carrier what the divergent carrier is to the disassociative carrier: it finds an entry that shares *at least one* class with the carrier. The syntax is:
+```rant
+<query::@?name>
+```
+We're just going to keep using the same example:
+```rant
+<name> had \a <noun::@?A> and \a <noun::@?A>.
+```
+```rant
+Thor had a wizard and a carpenter.
+```
+
+#### Match-Relational Carrier
+The match-relational carrier does exactly what you would expect by this point: it works as a relational carrier, but using a match carrier's class data:
+```rant
+<query::@?=name>
+```
+We can write the previous example as:
+```rant
+<name> had \a <noun::=A> and \a <noun::@?=A>.
+```
