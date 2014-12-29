@@ -29,6 +29,7 @@ This page contains a list of all the functions currently implemented in Rant. Th
 * [capsinfer](#capsinfer)
 * [case](#case) / [caps](#case)
 * [numfmt](#numfmt)
+* [quot](#quot) / [q](#quot)
 
 ### Flag Functions
 * [define](#define)
@@ -48,6 +49,7 @@ This page contains a list of all the functions currently implemented in Rant. Th
 
 ### Marker Functions
 * [dist](#dist)
+* [copy](#copy)
 * [mark](#mark)
 
 ### Output Functions
@@ -125,7 +127,7 @@ The `alt` function provides alternate output if the primary pattern provided has
 [alt: @primary; @secondary]
 ```
 #### Parameters
-* __primary__ - The pattern that will be interpreted and checked for length. 
+* __primary__ - The pattern that will be interpreted and checked for length.
 * __secondary__ - The pattern that will be run if the primary pattern outputs nothing.
 
 ### Usage
@@ -144,7 +146,7 @@ The `any` function is the opposite of [alt](#alt). It executes a secondary patte
 [any: @primary; @secondary]
 ```
 #### Parameters
-* __primary__ - The pattern that will be interpreted and checked for length. 
+* __primary__ - The pattern that will be interpreted and checked for length.
 * __secondary__ - The pattern that will be run if the primary pattern outputs anything.
 
 ### Usage
@@ -271,7 +273,7 @@ This function is equivalent to calling [case](#case) with one of the above param
 ### Usage
 The following example will print a section from Lorem Ipsum, inferring the capitalization from an inputted sentence:
 ```rant
-[$[lorem_ipsum] : 
+[$[lorem_ipsum] :
     lorem ipsum dolor sit amet, consectetur adipisicing elit...\N
 ]
 
@@ -301,6 +303,7 @@ The `case` (alias `caps`) function sets the capitalization mode that is used for
 ### Syntax
 ```rant
 [case: mode]
+[case: mode; @scope]
 ```
 #### Parameters
 * __mode__ - The capitalization mode to set. The following modes are supported:
@@ -311,11 +314,12 @@ The `case` (alias `caps`) function sets the capitalization mode that is used for
 	* `word` - Capitalize the first letter of every word.
 	* `first` - Capitalize the next letter.
 	* `sentence` - Capitalize the first letter of every sentence.
+* __scope__ (optional) - The code in which the capitalization will take effect. The previous capitalization mode will be restored after the scope pattern is finished running.
 
 ### Usage
 The following example prints a portion from Lorem Ipsum in two different cases:
 ```rant
-[$[lorem_ipsum] : 
+[$[lorem_ipsum] :
     lorem ipsum dolor sit amet, consectetur adipisicing elit...\N
 ]
 [case:title]
@@ -456,6 +460,31 @@ A = 0, B = 5:
 - Less
 - One
 - Any
+```
+
+## copy
+---
+The `copy` function prints the output existing between two markers (created with [mark](#mark)) in the same output channel.
+The ordering of the markers in the function does not matter.
+
+### Syntax
+```rant
+[copy: marker-a; marker-b]
+```
+#### Parameters
+* __marker-a__ - The name of the first marker defining the region to copy.
+* __marker-b__ - The name of the second marker defining the region to copy.
+
+### Usage
+The following example uses the `copy` function to retrieve part of a previously printed sentence and print it again.
+```rant
+[mark:a]The quick brown fox[mark:b] jumps over the lazy dog.
+\n
+[copy:a;b]
+```
+```
+The quick brown fox jumps over the lazy dog.
+The quick brown fox
 ```
 
 ## define
@@ -856,7 +885,7 @@ The following example prints "and " before every iteration of the repeater.
 It goes [rep:10][before: [notfirst: and\s]]{ on\s }
 ```
 ```rant
-It goes on and on and on and on and on and on and on and on and on and on 
+It goes on and on and on and on and on and on and on and on and on and on
 ```
 
 ## notlast
@@ -876,7 +905,7 @@ The following example prints "and " after every iteration of the repeater.
 It goes [rep:10][after: [notlast: and\s]]{ on\s }
 ```
 ```rant
-It goes on and on and on and on and on and on and on and on and on and on 
+It goes on and on and on and on and on and on and on and on and on and on
 ```
 
 ## notmiddle
@@ -893,10 +922,10 @@ The `notmiddle` function executes a pattern only if a repeater is on the first o
 ### Usage
 The following example will print the current repeater iteration every time `notmiddle` is executed:
 ```rant
-[rep:10]{ [notmiddle: \s[repnum],] } 
+[rep:10]{ [notmiddle: \s[repnum],] }
 ```
 ```rant
- 1, 10, 
+ 1, 10,
 ```
 
 ## nth
@@ -910,15 +939,15 @@ The `nth` function executes a pattern only if the current repeater iteration ali
 #### Parameters
 * __interval__ - The interval between iterations that the pattern will be run.
 * __offset__ - The number of iterations to shift the interval by.
-* __pattern__ - The pattern to evaluate if the current repeater iteration aligns with the offset interval. 
+* __pattern__ - The pattern to evaluate if the current repeater iteration aligns with the offset interval.
 
 ### Usage
 The following example prints the iteration number every four iterations, shifted by one:
 ```rant
-[rep:20]{ [nth: 4; 1; [repnum]\s] } 
+[rep:20]{ [nth: 4; 1; [repnum]\s] }
 ```
 ```rant
-1 5 9 13 17 
+1 5 9 13 17
 ```
 
 ## num
@@ -1092,6 +1121,32 @@ __B__
 ```rant
 Internal Text from B.
 ```
+
+## quot
+---
+The `quot` (alias `q`) function executes a pattern and surrounds the output in quotation marks specified by the current format.
+
+Top-level `quot` calls will print primary quotation marks (e.g. double quotes), while nested `quot` calls will produce secondary quotation marks (e.g. single quotes).
+
+### Syntax
+```rant
+[quot: @pattern]
+```
+#### Parameters
+* __pattern__ - The pattern whose output will be quoted.
+
+### Usage
+The following example demonstrates `quot` behavior and how it differs between the parent scope and nested calls.
+
+```rant
+[quot: This is a primary quote.]\n
+[quot: This is a [quot: secondary quote] inside a primary quote.]
+```
+```
+“This is a primary quote.”
+“This is a ‘secondary quote’ inside a primary quote.”
+```
+
 
 ## rep
 ---
@@ -1268,7 +1323,7 @@ The `undef` function deletes a flag of the specified name.
 
 ## x
 ---
-The `x` (alias `sync`) function configures and queues a synchronizer for the next block. 
+The `x` (alias `sync`) function configures and queues a synchronizer for the next block.
 
 A synchronizer changes how blocks select items. They can synchronize selections between several blocks.
 
@@ -1426,7 +1481,7 @@ The following code shows an example where a block is only allowed to iterate by 
 [pin:example]
 [rep:48][sep:[chance:10]{[xstep:example]\s}]
 {
-    [sync:example;ordered]{A|B|C|D|E|F|G|H} 
+    [sync:example;ordered]{A|B|C|D|E|F|G|H}
 }
 ```
 ```rant
