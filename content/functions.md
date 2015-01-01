@@ -46,6 +46,7 @@ This page contains a list of all the functions currently implemented in Rant. Th
 * [len](#len)
 * [num](#num) / [n](#num)
 * [src](#src)
+* [rhymemode](#rhymemode)
 
 ### Marker Functions
 * [dist](#dist)
@@ -991,6 +992,9 @@ The number formatting mode affects math expression output, [dist](#dist), [num](
     * `roman` or `roman-upper` - Uppercase roman numerals.
     * `roman-lower` - Lowercase roman numerals.
     * `verbal-en` - Spell out numbers according to US English conventions.
+    * `hex` or `hex-upper` - Uppercase hexidecimal (base 16) numbers.
+    * `hex-lower` - Lowercase hexidecimal (base 16) numbers.
+    * `binary` - Binary (base 2) numbers.
 * __scope__ - The pattern that the number formatting rule will be applied to.
 
 ### Usage
@@ -1247,6 +1251,34 @@ This is iteration 7, index 6.
 This is iteration 8, index 7.
 This is iteration 9, index 8.
 This is iteration 10, index 9.
+```
+
+## rhymemode
+---
+The `rhymemode` function changes the currently enabled rhyming modes used by Rant. 
+
+### Syntax
+```rant
+[rhymemode: modes]
+```
+#### Parameters
+* __modes__ - The modes to use. Rant will use *only* these modes, and will disable any that were enabled in the past. Multiple modes are repeated by spaces. The valid modes are:
+    * `perfect` - What everyone thinks of when they think of a rhyme. lime / sublime, picky / icky. This means that the first vowel sound after the primary stress and everything after it matches. *This is the only default mode.*
+    * `weak` - Where the penultimate syllable is stressed and the final syllable rhymes. hammer / carpenter, coffin / raisin.
+    * `syllabic` - The last syllables rhyme. senator / otter, knuckle / tentacle
+    * `semirhyme` - Where the words would rhyme if not for the last syllable. broom / broomstick, viking / flamingo
+    * `forced` - If you really, really need something that rhymes, try this. It's a bag of worms, but it can be funny.
+    * `slant_rhyme` - The ending consonants match. trunk / skunk, rant / ant.
+    * `pararhyme` - All the consonants match. tuna / teen, man / money, boat / bat.
+    * `alliteration` - The beginning consonants match. leg / lady, dog / dude.
+
+### Usage
+The following example shows `rhymemode` being used to generate alliterative pairs of adjectives and nouns:
+```rant
+[rhymemode: alliteration]<adj::&A> <noun::&A>
+```
+```rant
+fragrant frog
 ```
 
 ## send
